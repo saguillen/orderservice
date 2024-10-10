@@ -20,64 +20,60 @@ import com.sumtechlabs.orderservice.service.OrderService;
 
 @RestController
 public class OrderController {
-	
-    @Autowired
-    OrderService orderService;
-	
+
+	@Autowired
+	OrderService orderService;
+
 	@GetMapping(path = "/api/orderservice/order",  produces = { MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Order> getOrderData() {
-		
-        //  Crear una colección de pedidos
-        ArrayList<Order> orders = orderService.getOrdersData();
-        
-        HashMap<String, Order> ordersHashmap = orderService.getOrdersDataHashMap();
-		
+
+		//  Crear una colección de pedidos
+		ArrayList<Order> orders = orderService.getOrdersData();
+
+		HashMap<String, Order> ordersHashmap = orderService.getOrdersDataHashMap();
+
 		//TODO: Complete the code according what we request.
 		//1 - Create a Collection of Orders
 		//2 - Retrieve Order Entity info by Id number 100 .
 		//3 - Filter Order by Client.
 		//4 - Validate 
-		
-        System.out.println(ordersHashmap.toString());
-		
-        try {
-        	
-        	Order orderToSearch = new Order();
 
-           
-            if(ordersHashmap.containsKey("100")) { // Order con ID 100
-            	
-            	orderToSearch = ordersHashmap.get("100");
-            	
-            } else {
+		try {
 
-            	return new ResponseEntity<>(HttpStatusCode.valueOf(204));
-            }
-            
+			Order orderToSearch = new Order();
 
-            String clientName = "BMW"; // Busqueda por cliente especificado
-            ArrayList<Order> filteredOrders = new ArrayList<>(); // Arreglo de Orders con el cliente especificado
-            for (Order o : orders) {
-                if (o.getAccount().equals(clientName)) {
-                    filteredOrders.add(o);
-                }
-            }
-            
-         // Valida que exista el Pedido con ID 100 y su cliente sea el especificado
-            if(filteredOrders.isEmpty() || !filteredOrders.contains(orderToSearch)) {
-            	System.out.println(orderToSearch.getId()+" : "+ orderToSearch.getAccount());
-            	return new ResponseEntity<>(HttpStatusCode.valueOf(204)); // 204 No se encontraron Orders con ese Cliente
-            }
+			if(ordersHashmap.containsKey("100")) { // Order con ID 100
 
-            return new ResponseEntity<Order>(orderToSearch, HttpStatusCode.valueOf(200));
+				orderToSearch = ordersHashmap.get("100");
 
-        } catch (Exception e) {
-        	
-            return new ResponseEntity<>( HttpStatusCode.valueOf(500));
-            
-        }
-			
-		
+			} else {
+
+				return new ResponseEntity<>(HttpStatusCode.valueOf(204));
+			}
+
+
+			String clientName = "BMW"; // Busqueda por cliente especificado
+			ArrayList<Order> filteredOrders = new ArrayList<>(); // Arreglo de Orders con el cliente especificado
+			for (Order o : orders) {
+				if (o.getAccount().equals(clientName)) {
+					filteredOrders.add(o);
+				}
+			}
+
+			// Valida que exista el Pedido con ID 100 y su cliente sea el especificado
+			if(filteredOrders.isEmpty() || !filteredOrders.contains(orderToSearch)) {
+				return new ResponseEntity<>(HttpStatusCode.valueOf(204)); // 204 No se encontraron Orders con ese Cliente
+			}
+
+			return new ResponseEntity<Order>(orderToSearch, HttpStatusCode.valueOf(200));
+
+		} catch (Exception e) {
+
+			return new ResponseEntity<>( HttpStatusCode.valueOf(500));
+
+		}
+
+
 	}
 
 
