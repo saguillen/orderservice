@@ -1,5 +1,13 @@
-INSERT INTO order_req (account) VALUES ('CocaCola');
-INSERT INTO order_req (account) VALUES ('Toyota');
-INSERT INTO order_req (account) VALUES ('CocaCola');
-INSERT INTO order_req (account) VALUES ('GM');
-INSERT INTO order_req (account) VALUES ('Renault');
+INSERT INTO order_req (id, account) VALUES (1,'CocaCola');
+INSERT INTO order_req (id, account) VALUES (2,'Toyota');
+INSERT INTO order_req (id, account) VALUES (3,'CocaCola');
+INSERT INTO order_req (id, account) VALUES (5,'GM');
+INSERT INTO order_req (id, account) VALUES (8,'Renault');
+INSERT INTO ORDER_REQ (id, account) VALUES (13,'Pepsi');
+INSERT INTO ORDER_REQ (id, account) VALUES (21,'Ford');
+INSERT INTO ORDER_REQ (id, account) VALUES (34,'Tesla');
+INSERT INTO ORDER_REQ (id, account) VALUES (55,'Volkswagen');
+INSERT INTO ORDER_REQ (id, account) VALUES (89,'Nissan');
+INSERT INTO ORDER_REQ (id, account) VALUES (100,'BMW');
+INSERT INTO ORDER_REQ (id, account) VALUES (233,'Audi');
+INSERT INTO ORDER_REQ (id, account) VALUES (377,'Honda');
